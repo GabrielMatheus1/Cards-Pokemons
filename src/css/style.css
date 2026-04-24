@@ -23,6 +23,7 @@ body {
     from {
         opacity: 0.70;
     }
+
     to {
         opacity: 1;
     }
@@ -32,7 +33,7 @@ body {
 .cabecalho {
     color: rgb(9, 255, 0);
     font-size: 50px;
-    text-decoration:underline rgb(83, 75, 75);
+    text-decoration: underline rgb(83, 75, 75);
     text-align: center;
     padding: 50px 0;
 }
@@ -42,14 +43,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 70px;    
+    gap: 70px;
 }
 
 /* Botões para os lados */
 .btn-seta {
     width: 0;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,148 +61,78 @@ body {
     width: 100px;
 }
 
-/* Lista não ordenada */
 .lista-personagens {
     width: 380px;
-    height: 470px;
+    height: 500px;
     position: relative;
+
+    .cartao {
+        position: absolute;
+        padding: 10px;
+        border: solid 5px;
+        border-radius: 25px;
+        background-color: rgb(255, 255, 255, 0.6);
+        width: 100%;
+
+        .cartao_header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: greenyellow;
+
+            .cartao_nome {
+                padding: 8px 10px;
+                color: rgb(0, 0, 0);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+            
+            .shiney {
+                animation: pulsar 2s infinite linear;
+                font-size: 15px;
+                position: absolute;
+                top: 20px;
+            }
+
+            .cartao_id {
+                padding: 8px 10px;
+                color: rgb(0, 0, 0);
+                font-size: 12px;
+                text-decoration: underline;
+                letter-spacing: 2px;
+            }
+        }
+
+        .img_card {
+            position: relative;
+
+            .imagem-personagem {
+                width: 100%;
+                max-height: 250px;
+                margin-top: 10px;
+            }
+        }
+        
+
+
+    }
+
 }
 
-/* Itens da lista */
-.cartao {
-    position: absolute;
-    padding: 10px;
-    border: solid 5px;
-    border-radius: 25px;
-    background-color: rgb(255, 255, 255, 0.6);
-}
 
-#card1 {
-    display: block;
-    .nome{
-    background-color:rgb(9, 255, 0);}
-}
 
-#card2 {
-    display: none;
-    .nome{
-    background-color:rgb(9, 255, 0);}
-}
+@keyframes pulsar {
+    0% {
+        opacity: 0.5;
+    }
 
-#card3 {
-    display: none;
-    .nome{
-    background-color:rgb(9, 255, 0);}
-}
+    50% {
+        opacity: 1;
+    }
 
-#card4 {
-    display: none;
-    .nome{
-    background-color:rgb(248, 98, 11);}
-}
-#card5 {
-    display: none;    
-    .nome{
-    background-color:rgb(248, 98, 11);}
-}
-
-#card6 {
-    display: none;    
-    .nome{
-    background-color:rgb(248, 98, 11);}
-}
-
-/* Titulo do Card */
-.nome {
-    padding: 8px 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    color: rgb(0, 0, 0);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Imagem dos personagens */
-.imagem-personagem {
-    width: 100%;
-    max-height: 280px;
-    margin-top: 10px;
-    height: 270px;
-}
-
-/* Descrição dos personagens */
-.Titulo {
-    text-align: center;
-    background-color: white;
-}
-
-.cartao .descricao {
-    background-color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    text-align: justify;
-    max-height: 100px;
-    padding: 5px;
-    overflow:hidden;
-    overflow-y: scroll;
-}
-
-/* Tipo e Fraqueza */
-.cartao .descricao .tip {
-    text-align: center;
-    padding-bottom: 15px;
-    max-height: 100px;
-}
-.fraq {
-    margin-top: 5px;
-}
-
-/* Elementos */
-.elementos {
-    color: white;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 25px;
-    margin: 10px;
-}
-
-.voador {
-    background: linear-gradient(to top, rgb(52, 52, 77) 0%, rgb(5, 122, 255) 50%, rgb(4, 0, 255) 100%);
-}
-
-.fogo {
-    background-color: rgb(241, 90, 30);
-}
-
-.agua {
-    background-color: rgb(63, 123, 235);
-}
-
-.chao {
-    background-color: rgb(107, 58, 49);
-}
-
-.rocha {
-    background-color: rgb(83, 83, 83);
-}
-
-.planta {
-    background-color: rgb(9, 255, 0);
-}
-
-.venenoso {
-    background-color: rgb(174, 0, 255);
-}
-
-.gelo {
-    background-color: rgb(20, 192, 192);
-}
-
-.psiquico {
-    background-color: rgb(255, 1, 234);
-}
-
-.damege {
-    font-size: 10px;
-    padding-left: 5px;
+    100% {
+        opacity: 0.5;
+    }
 }

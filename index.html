@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" href="./src/css/responsive.css">
@@ -16,161 +17,36 @@
 <body class="page">
     
     <header>
-        <h1 class="cabecalho">Pokémon de Planta t</h1>
+        <h1 class="cabecalho"></h1>
     </header>
 
     <main class="personagens-slider">
         <div>
             <img class="imagem selecionada" src="./src/img/fundo001-003.jfif" alt="fundo de floresta para pokemons de planta">
-            <img class="imagem" src="./src/img/fundo004-006.jpg" alt="fundo campo aberto com arvores de fundo para pokenons de fogo">
         </div>
 
-            <!-- funcionalidade ok -->
-        <button class="btn-seta btn-voltar" id="btn-voltar">
+        <button class="btn-seta btn-voltar" onclick="backCard()">
             <img src="./src/img/esquerda.png" alt="botão para voltar" class="img-btn">
         </button>
 
         <ul class="lista-personagens">   
-            <!-- carta 1 -->
-            <li class="cartao" id="card1">
-                <h2 class="nome">bulbasaur</h2>
-                <img src="./src/img/bulbasaur.png" alt="imagem do Pokémon bulbasaur, um Pokémon de planta venenoso" class="imagem-personagem">
-                <h3 class="Titulo">Descrição</h3>
-                <div class="descricao">
-                    <div class="tip">
-                        <h4 class="fraq">Elemento</h4>
-                            <span class="planta elementos">Planta</span>
-                            <span class="venenoso elementos">Venenoso</span>
-                        <h4 class="fraq">Fraquezas</h4>
-                            <span class="fogo elementos">Fogo</span>
-                            <span class="gelo elementos">Gelo</span>
-                            <span class="voador elementos">Voador</span>
-                            <span class="psiquico elementos">Psíquico</span>
-                    </div>
-                        <br>
-                    <p class="texto">Por algum tempo após seu nascimento, ele usa os nutrientes que são embalados na semente em suas costas, a fim de crescer.</p>
-                    <p>Seu peso medio é de 6,9 KG</p>
-                    <p>Sua altura media é de 0,7 M</p>
-                        <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/bulbasaur">Pokédex</a></h5>
+          
+            <li class="cartao">
+                <div class="cartao_header">
+                    <h2 class="cartao_nome"></h2>
+                    <span class="cartao_id"></span>
                 </div>
+                <div class="img_card">
+                    <img src="" alt="imagem do Pokémon" class="imagem-personagem">
+                    <div class="elementos_pokemon"></div>
+                </div>
+
+                
             </li>
 
-            <!-- carta 2 -->
-            <li class="cartao" id="card2">
-                <h2 class="nome">ivysaur</h2>
-                <img src="./src/img/ivysaur.png" alt="imagem do Pokémon ivysaur, um Pokémon de planta venenoso" class="imagem-personagem">
-                <h3 class="Titulo">Descrição</h3>
-                <div class="descricao">
-                    <div class="tip">
-                        <h4 class="fraq">Elemento</h4>
-                            <span class="planta elementos">Planta</span>
-                            <span class="venenoso elementos">Venenoso</span>
-                        <h4 class="fraq">Fraquezas</h4>
-                            <span class="fogo elementos">Fogo</span>
-                            <span class="gelo elementos">Gelo</span>
-                            <span class="voador elementos">Voador</span>
-                            <span class="psiquico elementos">Psíquico</span>
-                    </div>
-                        <br>
-                    <p class="texto">Quanto mais luz solar Ivysaur se banha, mais força brota dentro dele, permitindo que o broto em suas costas cresça maior.</p>
-                    <p>Seu peso medio é de 13,0 KG</p>
-                    <p>Sua altura media é de 1,0 M</p>
-                        <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/ivysaur">Pokédex</a></h5>
-                </div>
-            </li>
-
-            <!-- carta 3 -->
-            <li class="cartao" id="card3">
-                <h2 class="nome">venusaur</h2>
-                <img src="./src/img/venusaur.png" alt="imagem do Pokémon venusaur, um Pokémon de planta venenoso" class="imagem-personagem">
-                <h3 class="Titulo">Descrição</h3>
-                <div class="descricao">
-                    <div class="tip">
-                        <h4 class="fraq">Elemento</h4>
-                            <span class="planta elementos">Planta</span>
-                            <span class="venenoso elementos">Venenoso</span>
-                        <h4 class="fraq">Fraquezas</h4>
-                            <span class="fogo elementos">Fogo</span>
-                            <span class="gelo elementos">Gelo</span>
-                            <span class="voador elementos">Voador</span>
-                            <span class="psiquico elementos">Psíquico</span>
-                    </div>
-                        <br>
-                    <p class="texto">Enquanto se aquece ao sol, pode converter a luz em energia. Como resultado, é mais poderoso no verão.</p>
-                    <p>Seu peso medio é de 100,0 KG</p>
-                    <p>Sua altura media é de 2,0 M</p>
-                        <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/venusaur">Pokédex</a></h5>
-                </div>
-            </li>
-
-            <!-- carta 4 -->
-            <li class="cartao" id="card4">
-                <h2 class="nome">Charmander</h2>
-                <img src="./src/img/charmander.png" alt="imagem do Pokémon Charmander, um Pokémon de fogo" class="imagem-personagem">
-                <h3 class="Titulo">Descrição</h3>
-                <div class="descricao">
-                    <div class="tip">
-                        <h4 class="fraq">Elemento</h4>
-                            <span class="fogo elementos">Fogo</span>
-                        <h4 class="fraq">Fraquezas</h4>
-                            <span class="agua elementos">Água</span>
-                            <span class="chao elementos">Terrestre</span>
-                            <span class="rocha elementos">Rocha</span>
-                    </div>
-                        <br>
-                    <p class="texto"> chama em sua cauda mostra a força de sua força vital. Se Charmander é fraco, a chama também queima fracamente.</p>
-                    <p>Seu peso medio é de 8,5 KG</p>
-                    <p>Sua altura media é de 0,6 M</p>
-                        <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/charmander">Pokédex</a></h5>
-                </div>
-            </li>
-
-            <!-- carta 5 -->
-            <li class="cartao" id="card5">
-                <h2 class="nome">Charmeleon</h2>
-                <img src="./src/img/charmeleon.png" alt="imagem do Pokémon Charmeleon, um Pokémon de fogo" class="imagem-personagem">
-                <h3 class="Titulo">Descrição</h3>
-                <div class="descricao">
-                    <div class="tip">
-                        <h4 class="fraq">Elemento</h4>
-                            <span class="fogo elementos">Fogo</span>
-                        <h4 class="fraq">Fraquezas</h4>
-                            <span class="agua elementos">Água</span>
-                            <span class="chao elementos">Terrestre</span>
-                            <span class="rocha elementos">Rocha</span>
-                    </div>
-                    <p class="texto">Quando ele balança sua cauda ardente, a temperatura ao seu redor sobe cada vez mais, atormentando seus oponentes.</p>
-                    <p>Seu peso medio é de 19 KG</p>
-                    <p>Sua altura media é de 1,1 M</p>
-                        <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/charmeleon">Pokédex</a></h5>
-                </div>
-            </li>
-            
-            <!-- carta 6 -->
-            <li class="cartao" id="card6">
-                <h2 class="nome">Charizard</h2>
-                <img src="./src/img/charizard.png" alt="imagem do Pokémon Charizard, um Pokémon de fogo" class="imagem-personagem">
-                <h3 class="Titulo">Descrição</h3>
-                <div class="descricao">
-                    <div class="tip">
-                        <h4 class="fraq">Elemento</h4>
-                            <span class="fogo elementos">Fogo</span>
-                            <span class="voador elementos">Voador</span>
-                        <h4 class="fraq">Fraquezas</h4>
-                            <span class="agua elementos">Água</span>
-                            <span class="chao elementos">Terrestre</span>
-                            <span class="rocha elementos">Rocha<span class="damege">dano 4x</span></span>
-                    </div>
-                    <p class="texto">Se Charizard ficar verdadeiramente irritado, a chama na ponta de sua cauda queima em um tom azul claro.</p>
-                    <p>Seu peso medio é de 90,5 KG</p>
-                    <p>Sua altura media é de 1,7 M</p>
-                        <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/charizard">Pokédex</a></h5>
-                </div>
-            </li>
         </ul>
 
-            <!-- funcionalidade ok -->
-        <button class="btn-seta btn-avancar" id="btn-avancar">
+        <button class="btn-seta btn-avancar" onclick="nextCard()">
             <img src="./src/img/direita.png" alt="botão para avançar" class="img-btn">
         </button>
 
