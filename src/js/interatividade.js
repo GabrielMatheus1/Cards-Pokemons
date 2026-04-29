@@ -1,145 +1,122 @@
-let IMG_URL = 'https://pokeapi.co/api/v2/pokemon-form/';
-let cont = 1
+const POKE_API_URL = 'https://pokeapi.co/api/v2/pokemon/';
+const MAX_POKEMON = 1025;
+const FALLBACK_IMAGE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png';
 
+let cont = 1;
 
-// let TIPOS = 'https://pokeapi.co/api/v2/type'
-let TIPOS = 'https://pokeapi.co/api/v2/type/1/'
+const cardElement = document.querySelector('.cartao');
+const imageElement = document.querySelector('.imagem-personagem');
+const nameElement = document.querySelector('.cartao_nome');
+const idElement = document.querySelector('.cartao_id');
+const typesElement = document.querySelector('.elementos_pokemon');
+const backgroundElement = document.querySelector('.imagem');
 
-function getTipos() {
-    let req = fetch(TIPOS)
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data);
-            document.querySelector('.imagem-personagem').src = data.sprites['generation-iii'].xd.name_icon;
-        })
-        .catch(error => {
-            console.error('Erro ao obter os dados dos pokémons:', error);
-        });
+const backgroundByType = {
+    fire: './src/img/fundo004-006.jpg',
+    grass: './src/img/fundo001-003.jfif',
+    poison: './src/img/fundo001-003.jfif',
+    bug: './src/img/fundo001-003.jfif'
+};
+
+function capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-getTipos();
+function formatPokemonNumber(id) {
+    return `N° ${String(id).padStart(3, '0')}`;
+}
 
-async function getImgPokemon(id) {
-    try {
-        let req = await fetch(IMG_URL + id)
-        let data = await req.json();
+function formatWeight(weight) {
+    return `${(weight / 10).toFixed(1)} kg`;
+}
 
-        console.log(data);
+function formatHeight(height) {
+    return `${(height / 10).toFixed(1)} m`;
+}
 
-        if (!data) {
-            cont--;
-            getImgPokemon(cont);
-            return;
-        }
+function updateBackground(primaryType) {
+    const backgroundImage = backgroundByType[primaryType] || './src/img/fundo001-003.jfif';
+    backgroundElement.src = backgroundImage;
+    backgroundElement.alt = `Fundo tematico do tipo ${primaryType}`;
+}
 
-        var imgElement = document.querySelector('.imagem-personagem');
-        var nomeElement = document.querySelector('.cartao_nome');
-        let idElement = document.querySelector('.cartao_id');
-        let elementosPokemon = document.querySelector('.elementos_pokemon');
+function renderTypes(types) {
+    typesElement.innerHTML = '';
 
+    types.forEach(({ type }) => {
+        const badge = document.createElement('span');
+        badge.className = `elementos ${type.name}`;
+        badge.textContent = capitalize(type.name);
+        typesElement.appendChild(badge);
+    });
+}
 
+function renderPokemon(data) {
+    const primaryType = data.types[0]?.type?.name || 'normal';
+    const artwork = data.sprites.other['official-artwork'].front_default;
+    const fallbackSprite = data.sprites.front_default;
 
-        idElement.innerHTML = 'N°' + data.id;
-        elementosPokemon.innerHTML = '';
+    nameElement.textContent = capitalize(data.name);
+    idElement.textContent = formatPokemonNumber(data.id);
+    imageElement.src = artwork || fallbackSprite || FALLBACK_IMAGE;
+    imageElement.alt = `Imagem do pokemon ${data.name}`;
 
-        //  data.types.forEach(type => {
-        //     let span = document.createElement('span');
-        //     span.classList.add('elementos');
-        //     span.classList.add(type.type.name);
-        //     span.innerHTML = type.type.name;
-        //     elementosPokemon.appendChild(span);
-        // });
+    renderTypes(data.types);
+    updateBackground(primaryType);
 
-        console.log(data);
-        let noShiney = data.sprites.front_default;
-        let shiney = data.sprites.front_shiny;
+    cardElement.dataset.type = primaryType;
+    cardElement.title = `Altura: ${formatHeight(data.height)} | Peso: ${formatWeight(data.weight)}`;
+}
 
-        let randonType = Math.floor(Math.random() * 2);
-         if (randonType === 0) {
-            imgElement.src = noShiney;
-            nomeElement.innerHTML = data.name;
-        } else {
-            imgElement.src = shiney;
-            imgElement.title = 'Shiney';
-            nomeElement.title = 'Shiney';
-            nomeElement.innerHTML = data.name + ' <span class="material-symbols-outlined shiney">flare</span>';
-         }
+async function getPokemon(id) {
+    const response = await fetch(`${POKE_API_URL}${id}`);
 
-        
-    } catch (err) {
-        console.error('Erro ao obter os dados dos pokémons:', err);
+    if (!response.ok) {
+        throw new Error(`Falha ao buscar pokemon ${id}`);
     }
 
+    return response.json();
 }
 
-getImgPokemon(1)
+async function loadPokemon(id) {
+    cardElement.classList.add('carregando');
 
- 
-
-
-function getPokemonsApi(id) {
-    fetch('https://pokeapi.co/api/v2/pokemon/' + id)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Erro ao obter os dados dos pokémons:', error);
-        });
+    try {
+        const pokemon = await getPokemon(id);
+        renderPokemon(pokemon);
+    } catch (error) {
+        console.error('Erro ao obter os dados do pokemon:', error);
+        nameElement.textContent = 'Pokemon indisponivel';
+        idElement.textContent = formatPokemonNumber(id);
+        imageElement.src = FALLBACK_IMAGE;
+        imageElement.alt = 'Pokemon indisponivel';
+        typesElement.innerHTML = '<span class="elementos unknown">Sem dados</span>';
+    } finally {
+        cardElement.classList.remove('carregando');
+    }
 }
-
-
-function inserirCard(idPokemon) {
-    var pokemon = getPokemonsApi(idPokemon)
-    console.log(pokemon);
-    let template = `
-        <li class="cartao" id="card1">
-            <h2 class="nome">${pokemon}</h2>
-            <img src="" alt="imagem do Pokémon , um Pokémon de planta venenoso" class="imagem-personagem">
-            <h3 class="Titulo">Descrição</h3>
-            <div class="descricao">
-                <div class="tip">
-                    <h4 class="fraq">Elemento</h4>
-                        <span class="planta elementos">Planta</span>
-                        <span class="venenoso elementos">Venenoso</span>
-                    <h4 class="fraq">Fraquezas</h4>
-                        <span class="fogo elementos">Fogo</span>
-                        <span class="gelo elementos">Gelo</span>
-                        <span class="voador elementos">Voador</span>
-                        <span class="psiquico elementos">Psíquico</span>
-                </div>
-                    <br>
-                <p class="texto">Por algum tempo após seu nascimento, ele usa os nutrientes que são embalados na semente em suas costas, a fim de crescer.</p>
-                <p>Seu peso medio é de 6,9 KG</p>
-                <p>Sua altura media é de 0,7 M</p>
-                    <h5>informaçoes obtidas do site <a href="https://www.pokemon.com/br/pokedex/bulbasaur">Pokédex</a></h5>
-            </div>
-        </li>
-    `
-    document.querySelector('.lista-personagens').innerHTML += template;
-}
-
-
-
 
 
 function nextCard() {
-    cont++;
-    
-    if (cont > 10553) {
+    cont += 1;
+
+    if (cont > MAX_POKEMON) {
         cont = 1;
     }
 
-    getImgPokemon(cont);
-    
+    loadPokemon(cont);
 }
+
 
 function backCard() {
-    cont--;
+    cont -= 1;
 
     if (cont < 1) {
-        cont = 10553;
+        cont = MAX_POKEMON;
     }
-    getImgPokemon(cont);
+
+    loadPokemon(cont);
 }
 
+
+loadPokemon(cont);

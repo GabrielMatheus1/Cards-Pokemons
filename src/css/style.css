@@ -1,5 +1,7 @@
 body {
     font-family: 'Outfit', sans-serif, Arial;
+    min-height: 100vh;
+    color: #111;
 }
 
 /* imagens de fundo com animação */
@@ -31,11 +33,13 @@ body {
 
 /* Header */
 .cabecalho {
-    color: rgb(9, 255, 0);
+    color: #f5f5f5;
     font-size: 50px;
-    text-decoration: underline rgb(83, 75, 75);
     text-align: center;
-    padding: 50px 0;
+    padding: 48px 16px 24px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* Main */
@@ -44,81 +48,206 @@ body {
     justify-content: center;
     align-items: center;
     gap: 70px;
+    padding: 24px 16px 48px;
 }
 
 /* Botões para os lados */
 .btn-seta {
-    width: 0;
+    width: 72px;
+    height: 72px;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-seta:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.45);
 }
 
 /* Imagem dos botões */
 .btn-seta .img-btn {
-    width: 100px;
+    width: 52px;
 }
 
 .lista-personagens {
     width: 380px;
     height: 500px;
     position: relative;
+}
 
-    .cartao {
-        position: absolute;
-        padding: 10px;
-        border: solid 5px;
-        border-radius: 25px;
-        background-color: rgb(255, 255, 255, 0.6);
-        width: 100%;
+.cartao {
+    position: absolute;
+    inset: 0;
+    padding: 16px;
+    border: 5px solid rgba(255, 255, 255, 0.65);
+    border-radius: 25px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(238, 244, 240, 0.82));
+    width: 100%;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
 
-        .cartao_header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background-color: greenyellow;
+.cartao.carregando {
+    opacity: 0.8;
+}
 
-            .cartao_nome {
-                padding: 8px 10px;
-                color: rgb(0, 0, 0);
-                text-transform: uppercase;
-                letter-spacing: 2px;
-            }
-            
-            .shiney {
-                animation: pulsar 2s infinite linear;
-                font-size: 15px;
-                position: absolute;
-                top: 20px;
-            }
+.cartao_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #8fd694, #d8f3a2);
+    margin-bottom: 16px;
+}
 
-            .cartao_id {
-                padding: 8px 10px;
-                color: rgb(0, 0, 0);
-                font-size: 12px;
-                text-decoration: underline;
-                letter-spacing: 2px;
-            }
-        }
+.cartao_nome {
+    padding: 10px 14px;
+    color: #101010;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.25rem;
+}
 
-        .img_card {
-            position: relative;
+.cartao_id {
+    padding: 10px 14px;
+    color: #101010;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
 
-            .imagem-personagem {
-                width: 100%;
-                max-height: 250px;
-                margin-top: 10px;
-            }
-        }
-        
+.img_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 390px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.15));
+    padding: 20px;
+}
 
+.imagem-personagem {
+    width: 100%;
+    max-width: 280px;
+    max-height: 260px;
+    margin-top: 10px;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.25));
+}
 
-    }
+.elementos_pokemon {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
+.elementos {
+    min-width: 88px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.grass {
+    background: #4caf50;
+}
+
+.poison {
+    background: #8e44ad;
+}
+
+.fire {
+    background: #e67e22;
+}
+
+.water {
+    background: #2980b9;
+}
+
+.bug {
+    background: #6b8e23;
+}
+
+.flying {
+    background: #5dade2;
+}
+
+.normal {
+    background: #7f8c8d;
+}
+
+.electric {
+    background: #f1c40f;
+    color: #1f1f1f;
+}
+
+.ground {
+    background: #a67c52;
+}
+
+.fairy {
+    background: #ff7eb6;
+}
+
+.psychic {
+    background: #e84393;
+}
+
+.fighting {
+    background: #c0392b;
+}
+
+.rock {
+    background: #8d6e63;
+}
+
+.steel {
+    background: #6c7a89;
+}
+
+.ice {
+    background: #74b9ff;
+    color: #1f1f1f;
+}
+
+.ghost {
+    background: #5e548e;
+}
+
+.dragon {
+    background: #3f51b5;
+}
+
+.dark {
+    background: #2d3436;
+}
+
+.unknown,
+.shadow,
+.stellar {
+    background: #636e72;
 }
 
 

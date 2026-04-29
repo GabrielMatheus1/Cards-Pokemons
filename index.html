@@ -17,7 +17,7 @@
 <body class="page">
     
     <header>
-        <h1 class="cabecalho"></h1>
+        <h1 class="cabecalho">Cards Pokemon</h1>
     </header>
 
     <main class="personagens-slider">
@@ -25,7 +25,7 @@
             <img class="imagem selecionada" src="./src/img/fundo001-003.jfif" alt="fundo de floresta para pokemons de planta">
         </div>
 
-        <button class="btn-seta btn-voltar" onclick="backCard()">
+        <button class="btn-seta btn-voltar" type="button" onclick="backCard()" aria-label="Voltar para o pokemon anterior">
             <img src="./src/img/esquerda.png" alt="botão para voltar" class="img-btn">
         </button>
 
@@ -36,17 +36,16 @@
                     <h2 class="cartao_nome"></h2>
                     <span class="cartao_id"></span>
                 </div>
+
                 <div class="img_card">
                     <img src="" alt="imagem do Pokémon" class="imagem-personagem">
                     <div class="elementos_pokemon"></div>
                 </div>
-
-                
             </li>
 
         </ul>
 
-        <button class="btn-seta btn-avancar" onclick="nextCard()">
+        <button class="btn-seta btn-avancar" type="button" onclick="nextCard()" aria-label="Avançar para o próximo pokemon">
             <img src="./src/img/direita.png" alt="botão para avançar" class="img-btn">
         </button>
 
