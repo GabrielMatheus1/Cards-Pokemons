@@ -5,42 +5,45 @@ const FALLBACK_IMAGE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master
 let cont = 1;
 
 const cardElement = document.querySelector('.cartao');
-const imageElement = document.querySelector('.imagem-personagem');
+const imageElement = document.querySelector('.img_pokemon');
 const nameElement = document.querySelector('.cartao_nome');
 const idElement = document.querySelector('.cartao_id');
 const typesElement = document.querySelector('.elementos_pokemon');
 const backgroundElement = document.querySelector('.imagem');
 
 const backgroundByType = {
-    fire: './src/img/fundo004-006.jpg',
-    grass: './src/img/fundo001-003.jfif',
-    poison: './src/img/fundo001-003.jfif',
-    bug: './src/img/fundo001-003.jfif'
+    grass: './src/img/grass.jpg'
 };
 
 function capitalize(text) {
+    // console.log('Capitalizando texto:', text.charAt(0).toUpperCase() + text.slice(1));
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 function formatPokemonNumber(id) {
+    // console.log('Formatando número do Pokémon:', String(id).padStart(3, '0'));
     return `N° ${String(id).padStart(3, '0')}`;
 }
 
 function formatWeight(weight) {
+    // console.log('Formatando peso do Pokémon:',`${(weight / 10).toFixed(1)} kg`);
     return `${(weight / 10).toFixed(1)} kg`;
 }
 
 function formatHeight(height) {
+    // console.log('Formatando altura do Pokémon:', `${(height / 10).toFixed(1)} m`);
     return `${(height / 10).toFixed(1)} m`;
 }
 
 function updateBackground(primaryType) {
-    const backgroundImage = backgroundByType[primaryType] || './src/img/fundo001-003.jfif';
+    // console.log('Atualizando fundo para o tipo:', primaryType);
+    const backgroundImage = backgroundByType[primaryType] || './src/img/grass.jpg';
     backgroundElement.src = backgroundImage;
     backgroundElement.alt = `Fundo tematico do tipo ${primaryType}`;
 }
 
 function renderTypes(types) {
+    // console.log('Renderizando tipos do Pokémon:', types);
     typesElement.innerHTML = '';
 
     types.forEach(({ type }) => {
@@ -52,6 +55,7 @@ function renderTypes(types) {
 }
 
 function renderPokemon(data) {
+    // console.log('Renderizando Pokémon:', data);
     const primaryType = data.types[0]?.type?.name || 'normal';
     const artwork = data.sprites.other['official-artwork'].front_default;
     const fallbackSprite = data.sprites.front_default;
@@ -67,6 +71,7 @@ function renderPokemon(data) {
     cardElement.dataset.type = primaryType;
     cardElement.title = `Altura: ${formatHeight(data.height)} | Peso: ${formatWeight(data.weight)}`;
 }
+
 
 async function getPokemon(id) {
     const response = await fetch(`${POKE_API_URL}${id}`);
@@ -117,6 +122,9 @@ function backCard() {
 
     loadPokemon(cont);
 }
+
+window.nextCard = nextCard;
+window.backCard = backCard;
 
 
 loadPokemon(cont);

@@ -4,7 +4,14 @@ body {
     color: #111;
 }
 
-/* imagens de fundo com animação */
+.page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
 .imagem {
     display: none;
     position: fixed;
@@ -19,6 +26,7 @@ body {
 .imagem.selecionada {
     display: block;
     animation: trocarImage 0.7s;
+    opacity: 0.8;
 }
 
 @keyframes trocarImage {
@@ -31,30 +39,31 @@ body {
     }
 }
 
-/* Header */
 .cabecalho {
     color: #f5f5f5;
-    font-size: 50px;
+    font-size: clamp(2rem, 7vw, 4rem);
     text-align: center;
-    padding: 48px 16px 24px;
-    letter-spacing: 3px;
+    letter-spacing: clamp(1px, 0.4vw, 3px);
     text-transform: uppercase;
     text-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    padding: clamp(16px, 4vh, 40px) 16px 0;
+    line-height: 1;
 }
 
-/* Main */
 .personagens-slider {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 70px;
-    padding: 24px 16px 48px;
+    gap: clamp(12px, 4vw, 50px);
+    width: 100%;
+    padding: clamp(16px, 4vh, 32px) 16px;
 }
 
-/* Botões para os lados */
 .btn-seta {
-    width: 72px;
-    height: 72px;
+    flex: 0 0 auto;
+    width: clamp(48px, 8vw, 72px);
+    height: clamp(48px, 8vw, 72px);
     border: none;
     cursor: pointer;
     display: flex;
@@ -72,23 +81,24 @@ body {
     background: rgba(255, 255, 255, 0.45);
 }
 
-/* Imagem dos botões */
 .btn-seta .img-btn {
-    width: 52px;
+    width: 72%;
+    max-width: 52px;
 }
 
 .lista-personagens {
-    width: 380px;
-    height: 500px;
+    width: min(380px, calc(100vw - 160px));
+    height: clamp(410px, 64vh, 500px);
     position: relative;
+    flex: 0 1 380px;
 }
 
 .cartao {
     position: absolute;
     inset: 0;
-    padding: 16px;
-    border: 5px solid rgba(255, 255, 255, 0.65);
-    border-radius: 25px;
+    padding: clamp(12px, 3vw, 16px);
+    border: clamp(3px, 1vw, 5px) solid rgba(255, 255, 255, 0.65);
+    border-radius: clamp(18px, 4vw, 25px);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(238, 244, 240, 0.82));
     width: 100%;
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
@@ -104,43 +114,50 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     border-radius: 16px;
     background: linear-gradient(90deg, #8fd694, #d8f3a2);
-    margin-bottom: 16px;
+    margin-bottom: clamp(10px, 3vw, 16px);
 }
 
 .cartao_nome {
-    padding: 10px 14px;
+    min-width: 0;
+    padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 14px);
     color: #101010;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1.25rem;
+    letter-spacing: clamp(1px, 0.4vw, 2px);
+    font-size: clamp(0.95rem, 3vw, 1.25rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .cartao_id {
-    padding: 10px 14px;
+    flex: 0 0 auto;
+    padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 14px);
     color: #101010;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
+    font-size: clamp(0.75rem, 2.4vw, 0.85rem);
+    letter-spacing: clamp(1px, 0.35vw, 2px);
     font-weight: 700;
 }
 
-.img_card {
+.cartao_img {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 390px;
-    border-radius: 18px;
+    min-height: 0;
+    height: calc(100% - 58px);
+    border-radius: clamp(14px, 3vw, 18px);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.15));
-    padding: 20px;
+    padding: clamp(14px, 4vw, 20px);
 }
 
-.imagem-personagem {
+.img_pokemon {
     width: 100%;
-    max-width: 280px;
-    max-height: 260px;
+    max-width: min(280px, 82%);
+    max-height: min(260px, 60%);
     margin-top: 10px;
     object-fit: contain;
     filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.25));
@@ -148,9 +165,9 @@ body {
 
 .elementos_pokemon {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    bottom: clamp(14px, 4vw, 20px);
+    left: clamp(14px, 4vw, 20px);
+    right: clamp(14px, 4vw, 20px);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -158,12 +175,12 @@ body {
 }
 
 .elementos {
-    min-width: 88px;
-    padding: 8px 12px;
+    min-width: clamp(72px, 18vw, 88px);
+    padding: clamp(7px, 2vw, 8px) clamp(10px, 3vw, 12px);
     border-radius: 999px;
     text-align: center;
     text-transform: uppercase;
-    font-size: 0.72rem;
+    font-size: clamp(0.62rem, 2vw, 0.72rem);
     font-weight: 700;
     letter-spacing: 1px;
     color: #fff;
@@ -249,8 +266,6 @@ body {
 .stellar {
     background: #636e72;
 }
-
-
 
 @keyframes pulsar {
     0% {

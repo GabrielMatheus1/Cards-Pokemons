@@ -1,37 +1,121 @@
-@media(max-width: 500px){
+@media (max-width: 760px) {
     .personagens-slider {
-        gap: 20px;
+        gap: 16px;
     }
 
     .lista-personagens {
-        width: 240px;
-        margin: 13px;
+        width: min(360px, calc(100vw - 128px));
+        height: clamp(400px, 68vh, 480px);
+    }
+}
+
+@media (max-width: 560px) {
+    .cabecalho {
+        padding-top: 18px;
+        font-size: clamp(1.8rem, 10vw, 2.6rem);
     }
 
-    .img-btn {
-        height: 50px;
+    .personagens-slider {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        justify-items: center;
+        align-content: center;
+        row-gap: 14px;
+        column-gap: 18px;
+        padding: 18px 16px 24px;
     }
 
-    h1.cabecalho {
-        font-size: 40px;
-        margin-bottom: 50px;
+    .lista-personagens {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        width: min(340px, calc(100vw - 32px));
+        height: clamp(380px, 64vh, 460px);
+    }
+
+    .btn-voltar {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    .btn-avancar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+}
+
+@media (max-width: 380px) {
+    .cabecalho {
+        font-size: 1.75rem;
+    }
+
+    .lista-personagens {
+        height: 370px;
+    }
+
+    .cartao_header {
+        border-radius: 12px;
+    }
+
+    .cartao_nome {
+        font-size: 0.86rem;
+    }
+
+    .cartao_id {
+        font-size: 0.68rem;
+    }
+
+    .img_pokemon {
+        max-height: 54%;
+    }
+
+    .elementos_pokemon {
+        gap: 8px;
+    }
+}
+
+@media (max-height: 640px) and (orientation: landscape) {
+    .cabecalho {
+        font-size: clamp(1.5rem, 5vh, 2rem);
+        padding-top: 10px;
+    }
+
+    .personagens-slider {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 12px;
+    }
+
+    .lista-personagens {
+        width: min(320px, calc(100vw - 152px));
+        height: min(390px, calc(100dvh - 92px));
+    }
+
+    .btn-seta {
+        width: 48px;
+        height: 48px;
+    }
+
+    .cartao_img {
+        height: calc(100% - 48px);
+    }
+
+    .img_pokemon {
+        max-height: 52%;
     }
 
     .elementos {
-        margin: 1px;
+        padding-top: 6px;
+        padding-bottom: 6px;
     }
 }
 
-@media(min-height: 801px) and (max-height: 1000px){
-    .cabecalho {
-        margin-bottom: 100px;
-        font-size: 70px;
-    }
-}
-
-@media(min-height: 1001px){
-    .cabecalho {
-    font-size: 80px;
-    margin-bottom: 150px;
+@media (min-width: 1200px) {
+    .lista-personagens {
+        width: 400px;
+        height: 520px;
+        flex-basis: 400px;
     }
 }
