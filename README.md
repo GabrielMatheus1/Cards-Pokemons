@@ -3,8 +3,8 @@
 Projeto web de cards interativos inspirado em Pokemon. A aplicação consome dados da [PokeAPI](https://pokeapi.co/) para exibir informacoes dos Pokemon, como nome, numero, imagem oficial, tipos, altura e peso.
 
 ## Preview
+<img width="1706" height="861" alt="image" src="https://github.com/user-attachments/assets/e8509be9-105d-4973-996a-082b8121118e" />
 
-![Preview do projeto](./src/img/preview.png)
 
 ## Funcionalidades
 
